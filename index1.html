@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Laddu (Biloto) | Best Friend Day 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #050505;
+            --accent-primary: #ff3e8d; /* Electric Rose */
+            --accent-secondary: #7000ff; /* Deep Violet */
+            --text-main: #ffffff;
+            --text-dim: rgba(255, 255, 255, 0.6);
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --font-sans: 'Inter', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none; /* Custom cursor implementation */
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- Background Mesh Gradient --- */
+        .mesh-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(112, 0, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(255, 62, 141, 0.15) 0%, transparent 40%);
+            filter: blur(80px);
+        }
+
+        /* --- Custom Cursor --- */
+        #cursor {
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+
+        #cursor-follower {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.2s ease, width 0.3s, height 0.3s;
+        }
+
+        /* --- Layout & Sections --- */
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 10%;
+            position: relative;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Hero Section --- */
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 800;
+            line-height: 0.9;
+            text-align: center;
+            background: linear-gradient(to bottom, #fff 40%, var(--accent-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        /* --- Bento Grid Section --- */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 300px);
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .bento-item {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            transition: transform 0.3s ease, border 0.3s ease;
+        }
+
+        .bento-item:hover {
+            transform: scale(1.02);
+            border-color: var(--accent-primary);
+        }
+
+        .item-1 { grid-column: span 2; }
+        .item-2 { grid-column: span 2; }
+        .item-3 { grid-column: span 1; }
+        .item-4 { grid-column: span 3; }
+
+        .bento-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--accent-primary);
+        }
+
+        /* --- Interactive Letter --- */
+        .letter-container {
+            max-width: 800px;
+            background: var(--glass);
+            border-radius: 40px;
+            padding: 60px;
+            border: 1px solid var(--glass-border);
+            position: relative;
+        }
+
+        .letter-text {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-style: italic;
+            text-align: center;
+            color: #eee;
+        }
+
+        .name-highlight {
+            color: var(--accent-primary);
+            font-weight: 800;
+            border-bottom: 2px solid var(--accent-primary);
+        }
+
+        /* --- Heartbeat Interaction --- */
+        .heart-button {
+            width: 100px;
+            height: 100px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            margin-top: 40px;
+            cursor: none;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 62, 141, 0.4); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 20px rgba(255, 62, 141, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 62, 141, 0); }
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 100px 0;
+            text-align: center;
+            opacity: 0.5;
+            font-size: 0.8rem;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 900px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+            .item-1, .item-2, .item-3, .item-4 {
+                grid-column: span 1;
+                min-height: 250px;
+            }
+            .hero h1 { font-size: 4rem; }
+            .letter-container { padding: 30px; }
+            .letter-text { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cursor"></div>
+    <div id="cursor-follower"></div>
+    <div class="mesh-bg"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <p class="reveal">2026 Edition</p>
+        <h1 class="reveal">HEY <br>LADDU.</h1>
+        <div class="reveal" style="margin-top: 20px;">
+            <span style="font-style: italic; color: var(--accent-primary);">The Biloto special...</span>
+        </div>
+    </section>
+
+    <!-- The Bento Journey -->
+    <section>
+        <div class="bento-grid">
+            <div class="bento-item item-1 reveal">
+                <h3>The Vibe</h3>
+                <p>You aren't just a friend; you're the chaos that makes my life organized and the peace that makes it exciting.</p>
+            </div>
+            <div class="bento-item item-2 reveal">
+                <h3>01. Soulmate Status</h3>
+                <p>In a world full of temporary 'hellos', thank you for being my permanent 'I'm here'.</p>
+            </div>
+            <div class="bento-item item-3 reveal">
+                <h3>Pure Energy</h3>
+                <p>✨ Stay gold, Laddu.</p>
+            </div>
+            <div class="bento-item item-4 reveal">
+                <h3>To My Biloto</h3>
+                <p>From the deep talks to the meaningless laughs, every second counts when it's with you. Today is about celebrating the person who knows all my stories but stayed anyway.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Heartfelt Letter -->
+    <section>
+        <div class="letter-container reveal">
+            <p class="letter-text">
+                "Dear <span class="name-highlight">LADDU (BILOTO)</span>,<br><br>
+                Some people make the world better just by being in it. You're one of those people. 
+                On this Best Friend Day, I wanted to create something as modern, unique, and 
+                vibrant as you are. Thanks for being my person."
+            </p>
+        </div>
+
+        <div class="heart-button" id="heartBtn">
+            ❤️
+        </div>
+        <p id="counter" style="margin-top: 15px; color: var(--accent-primary); font-weight: bold;">Tap for Love</p>
+    </section>
+
+    <footer>
+        Designed for a Special Bond • 2026 • Always & Forever
+    </footer>
+
+    <script>
+        // Custom Cursor Logic
+        const cursor = document.getElementById('cursor');
+        const follower = document.getElementById('cursor-follower');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            follower.style.left = (e.clientX - 10) + 'px';
+            follower.style.top = (e.clientY - 10) + 'px';
+        });
+
+        // Hover Effect for Cursor
+        document.querySelectorAll('.bento-item, .heart-button').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                follower.style.transform = 'scale(2)';
+                follower.style.background = 'rgba(255, 62, 141, 0.2)';
+            });
+            item.addEventListener('mouseleave', () => {
+                follower.style.transform = 'scale(1)';
+                follower.style.background = 'transparent';
+            });
+        });
+
+        // Intersection Observer for Reveal Animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Heart Interaction Logic
+        let count = 0;
+        const heartBtn = document.getElementById('heartBtn');
+        const counterText = document.getElementById('counter');
+
+        heartBtn.addEventListener('click', () => {
+            count++;
+            counterText.innerText = `Love sent: ${count}`;
+            
+            // Create mini floating hearts
+            const heart = document.createElement('div');
+            heart.innerHTML = '💖';
+            heart.style.position = 'fixed';
+            heart.style.left = heartBtn.getBoundingClientRect().left + 50 + 'px';
+            heart.style.top = heartBtn.getBoundingClientRect().top + 'px';
+            heart.style.fontSize = '2rem';
+            heart.style.pointerEvents = 'none';
+            heart.style.transition = 'all 1s ease-out';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.style.transform = `translate(${(Math.random() - 0.5) * 200}px, -200px)`;
+                heart.style.opacity = '0';
+            }, 10);
+
+            setTimeout(() => heart.remove(), 1000);
+            
+            if(count === 10) {
+                counterText.innerText = "You're the best, Biloto!";
+            }
+        });
+    </script>
+</body>
+</html>
